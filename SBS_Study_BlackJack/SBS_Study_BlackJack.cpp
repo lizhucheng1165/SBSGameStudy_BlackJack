@@ -2,10 +2,13 @@
 //
 
 #include <iostream>
-#include "BlackJackClass.h"
+#include <random>
+#include "C_DECK.h"
+#include "C_CARD.h"
+
 int main()
 {
-	C_DEALER dealer;
+
 
 }
 

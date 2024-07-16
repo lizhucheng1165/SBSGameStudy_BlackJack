@@ -127,7 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="C_CARD.cpp" />
+    <ClCompile Include="C_DEALER.cpp" />
+    <ClCompile Include="C_DECK.cpp" />
+    <ClCompile Include="C_GAME.cpp" />
+    <ClCompile Include="C_HAND.cpp" />
+    <ClCompile Include="C_PLAYER.cpp" />
     <ClCompile Include="SBS_Study_BlackJack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BlackJackClass.h" />
+    <ClInclude Include="C_CARD.h" />
+    <ClInclude Include="C_DEALER.h" />
+    <ClInclude Include="C_DECK.h" />
+    <ClInclude Include="C_GAME.h" />
+    <ClInclude Include="C_HAND.h" />
+    <ClInclude Include="C_PLAYER.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
