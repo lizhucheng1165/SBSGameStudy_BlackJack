@@ -1,23 +1,33 @@
 #include "C_PLAYER.h"
 
-C_PLAYER::C_PLAYER(int nPlayerIndex)
+
+int C_PLAYER::getPlayerIndex() const
 {
-	m_nPlayerIndex = nPlayerIndex;
+	return m_nPlayerIndex;
 }
 
-C_PLAYER::~C_PLAYER()
+C_HAND C_PLAYER::getHand() const
 {
+	return m_hand;
 }
 
-void C_PLAYER::getPlayerIndex() const
+bool C_PLAYER::makeDecision() const
 {
-}
+	int nDecisionIndex{};
+	
+	printf("1.Hit  2.Stand");
+	scanf_s("%d", &nDecisionIndex);
+	while (nDecisionIndex != 1 && nDecisionIndex != 2)
+	{
+		printf("입력이 잘못됐습니다. 다시 입력해주십시오");
+		printf("1.Hit  2.Stand");
+		scanf_s("%d", &nDecisionIndex);
+	}
+	if (nDecisionIndex == 1)
+	{
+		return true;
+	}
 
-void C_PLAYER::getHand() const
-{
-}
 
-std::string C_PLAYER::makeDecision() const
-{
-	return std::string();
+	return false;
 }

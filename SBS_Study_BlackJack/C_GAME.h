@@ -13,8 +13,7 @@ private:
 	std::vector<C_PLAYER> m_players;
 
 public:
-	C_GAME();
-	~C_GAME();
+	C_GAME() = default;
 
 	void initializeGame();
 	void dealInitialCards();

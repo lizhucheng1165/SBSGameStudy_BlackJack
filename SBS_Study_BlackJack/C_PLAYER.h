@@ -1,19 +1,19 @@
 #pragma once
 #include <string>
+#include <stdio.h>
 #include "C_HAND.h"
 class C_PLAYER
 {
 private:
-	C_HAND m_hand;
+	C_HAND m_hand{};
 	int m_nPlayerIndex;
 
 public:
-	C_PLAYER(int playerIndex);
-	~C_PLAYER();
+	C_PLAYER() = default;
 
 
-	void getPlayerIndex() const;
-	void getHand() const;
-	std::string makeDecision() const;
+	int getPlayerIndex() const;
+	C_HAND getHand() const;
+	bool makeDecision() const;
 };
 

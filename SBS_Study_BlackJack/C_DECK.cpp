@@ -1,14 +1,6 @@
 #include "C_DECK.h"
 #include <random>
 
-C_DECK::C_DECK()
-{
-}
-
-C_DECK::~C_DECK()
-{
-}
-
 bool C_DECK::shuffle()
 {
     int nCardCount = m_cards.size();

@@ -7,11 +7,10 @@ class C_HAND
 private:
 	std::vector<C_CARD> m_cards;
 public:
-	C_HAND();
-	~C_HAND();
+	C_HAND() = default;
 
 	void addCard(C_CARD card);
-	int getTotalValue();
+	int getTotalValue() const;
 	bool isBusted();
 	void clearHand();
 };

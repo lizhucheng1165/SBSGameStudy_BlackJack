@@ -1,23 +1,20 @@
 #include "C_DEALER.h"
 
-C_DEALER::C_DEALER()
-{
-}
-
-C_DEALER::~C_DEALER()
-{
-}
-
 bool C_DEALER::makeDecision() const
 {
-	return false;
-}
+	int nTotalValue = m_hand.getTotalValue();
+	if (nTotalValue >= 17)
+	{
+		return false;
+	}
 
-void C_DEALER::addCard(C_CARD card)
-{
+	return true;
 }
 
 C_HAND C_DEALER::getHand() const
 {
-	return C_HAND();
+	return m_hand;
 }
+
+
+

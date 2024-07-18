@@ -9,8 +9,7 @@ private:
 	
 
 public:
-	C_DECK();
-	~C_DECK();
+	C_DECK() = default;
 
 	bool shuffle();
 	C_CARD dealCard();

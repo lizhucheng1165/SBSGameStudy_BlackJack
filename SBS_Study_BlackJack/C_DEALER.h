@@ -5,11 +5,9 @@ class C_DEALER
 private:
 	C_HAND m_hand;
 public:
-	C_DEALER();
-	~C_DEALER();
+	C_DEALER() = default;
 
 	bool makeDecision() const;
-	void addCard(C_CARD card);
 	C_HAND getHand() const;
 };
 

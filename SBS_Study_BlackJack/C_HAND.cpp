@@ -2,20 +2,12 @@
 #include "C_DECK.h"
 #include "C_CARD.h"
 
-C_HAND::C_HAND()
-{
-}
-
-C_HAND::~C_HAND()
-{
-}
-
 void C_HAND::addCard(C_CARD card)
 {
 	m_cards.push_back(card);
 }
 
-int C_HAND::getTotalValue()
+int C_HAND::getTotalValue() const
 {
 	int nCardCount = m_cards.size();
 	int nTotal{};
