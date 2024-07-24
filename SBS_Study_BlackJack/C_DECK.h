@@ -13,5 +13,6 @@ public:
 
 	bool shuffle();
 	C_CARD dealCard();
+	void init();
 };
 

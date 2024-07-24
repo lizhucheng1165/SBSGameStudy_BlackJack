@@ -2,13 +2,14 @@
 //
 
 #include <iostream>
-#include <random>
-#include "C_DECK.h"
-#include "C_CARD.h"
+#include "C_GAME.h"
 
 int main()
 {
+	C_GAME newGame{};
 
+	newGame.initializeGame();
+	newGame.playCurrentRound();
 
 }
 

@@ -22,6 +22,7 @@ public:
 
 	int getValue() const;
 	E_SUIT getSuit() const;
+	void init(E_SUIT,E_VALUE);
 	
 };
 

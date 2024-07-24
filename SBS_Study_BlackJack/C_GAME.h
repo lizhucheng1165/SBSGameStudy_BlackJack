@@ -6,11 +6,21 @@
 
 class C_GAME
 {
-
+public:
+	enum E_WHOSTURN
+	{
+		DEALER, PLAYER
+	};
+	enum E_GAMESTATE
+	{
+		READY, PLAYING
+	};
 private:
 	C_DECK m_deck;
 	C_DEALER m_dealer;
-	std::vector<C_PLAYER> m_players;
+	C_PLAYER m_player;
+	E_WHOSTURN m_eWhosTurn;
+	E_GAMESTATE m_eGameState;
 
 public:
 	C_GAME() = default;

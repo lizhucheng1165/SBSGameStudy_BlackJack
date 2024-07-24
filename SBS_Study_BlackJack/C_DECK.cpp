@@ -3,6 +3,7 @@
 
 bool C_DECK::shuffle()
 {
+    printf("셔플\n");
     int nCardCount = m_cards.size();
 
     //카드 갯수가 1이하라면 셔플할 필요가 없다
@@ -28,12 +29,35 @@ bool C_DECK::shuffle()
         // 현재 인덱스와 무작위 인덱스의 요소를 교환
         std::swap(m_cards[i], m_cards[nRandomNumber]);
     }
-
+    /*printf("0번째 카드 : %d\n", m_cards[0].getValue());
+    printf("1번째 카드 : %d\n", m_cards[1].getValue());*/
+    
     return true;
 }
 
 
 C_CARD C_DECK::dealCard()
 {
-	return 	m_cards.back();
+    C_CARD cardToDeal = m_cards.back();
+    m_cards.pop_back();
+	return 	cardToDeal;
 }
+
+void C_DECK::init()
+{
+    printf("덱 인잇\n");
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 1; j < 14; j++)
+        {
+            C_CARD card{};
+            C_CARD::E_SUIT suit = (C_CARD::E_SUIT)i;
+            C_CARD::E_VALUE value = (C_CARD::E_VALUE)j;
+            card.init(suit, value);
+            m_cards.push_back(card);
+            //printf("suit : %d, Value : %d\n", suit, value);
+        }
+    }
+}
+
+

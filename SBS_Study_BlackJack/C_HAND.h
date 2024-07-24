@@ -13,5 +13,8 @@ public:
 	int getTotalValue() const;
 	bool isBusted();
 	void clearHand();
+	void init();
+	int getCardCount() const;
+	void displayCards() const;
 };
 

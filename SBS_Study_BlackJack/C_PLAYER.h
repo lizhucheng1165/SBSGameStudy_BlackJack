@@ -5,15 +5,14 @@
 class C_PLAYER
 {
 private:
-	C_HAND m_hand{};
-	int m_nPlayerIndex;
+	C_HAND m_hand;
 
 public:
 	C_PLAYER() = default;
 
 
-	int getPlayerIndex() const;
 	C_HAND getHand() const;
 	bool makeDecision() const;
+	void init();
 };
 

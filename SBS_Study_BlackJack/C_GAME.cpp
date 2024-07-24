@@ -4,34 +4,81 @@
 
 void C_GAME::initializeGame()
 {
+	printf("이니셜라이즈 게임\n");
 	//덱초기화
+	m_deck.init();
+	//덱셔플
+	m_deck.shuffle();
 	//딜러 초기화
+	m_dealer.init();
 	//플레이어 초기화
-	
-	//덱에 모든 카드 집어넣기
-	//덱 셔플
-	//딜러 만들기
-	//플레이어 만들기
-
+	m_player.init();
+	//시작 턴 = 플레이어
+	m_eWhosTurn = PLAYER;
+	m_eGameState = PLAYING;
 }
 
 void C_GAME::dealInitialCards()
 {
-	//덱에서 카드 두장 뽑기
-	//player에게 카드 두장 주기
-	//dealer에게 카드 두장 주기
+	for (int i = 0; i < 2; i++)
+	{
+		m_player.getHand().addCard(m_deck.dealCard());
+		m_dealer.getHand().addCard(m_deck.dealCard());
 
+	}
 }
 
 void C_GAME::playCurrentRound()
 {
+	//init카드 나눠주기
+	dealInitialCards();
+	m_dealer.getHand().displayCards();
+	//플레이어 결정
+	while (m_eWhosTurn == PLAYER)
+	{
+
+		//hit -> 플레이어 카드추가
+		if (m_player.makeDecision())
+		{
+			m_player.getHand().addCard(m_deck.dealCard());
+			determineWinner();
+		}
+	}
+	//stand -> 딜러턴
+	while (m_dealer.makeDecision())
+	{
+		m_dealer.getHand().addCard(m_deck.dealCard());
+		m_dealer.getHand().displayCards();
+	}
+	determineWinner();
 }
 
 void C_GAME::determineWinner()
 {
-	//딜러의 카드가 17이하이면 계속 뽑기
-	//17이상이면 멈추기
-	//21이 넘으면 플레이어 승
-	//플레이어보다 낮으면 플레이어 승
-	//플레이어보다 높으면 딜러 승
+	int nPlayerTotal = m_player.getHand().getTotalValue();
+	int nDealerTotal = m_dealer.getHand().getTotalValue();
+
+	//플레이어가 21이 넘음 -> 패배
+	if (m_player.getHand().isBusted())
+	{
+		printf("플레이어 패배");
+		m_eGameState = READY;
+	}
+	else if (m_dealer.getHand().isBusted())
+	{
+		printf("플레이어 승리");
+		m_eGameState = READY;
+	}
+	else if (nPlayerTotal > nDealerTotal)
+	{
+		printf("플레이어 승리");
+		m_eGameState = READY;
+	}
+	else
+	{
+		printf("플레이어 패배");
+		m_eGameState = READY;
+	}
 }
+
+

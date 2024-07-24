@@ -9,5 +9,6 @@ public:
 
 	bool makeDecision() const;
 	C_HAND getHand() const;
+	void init();
 };
 

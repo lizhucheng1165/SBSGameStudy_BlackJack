@@ -4,7 +4,8 @@
 
 void C_HAND::addCard(C_CARD card)
 {
-	m_cards.push_back(card);
+	m_cards.push_back(card);//여기가 문제
+	printf("카드 추가됨. 현재 카드 수: %d\n", m_cards.size());
 }
 
 int C_HAND::getTotalValue() const
@@ -32,3 +33,24 @@ void C_HAND::clearHand()
 {
 	m_cards.clear();
 }
+
+void C_HAND::init()
+{
+	clearHand();
+}
+
+int C_HAND::getCardCount() const
+{
+	return m_cards.size();
+}
+
+void C_HAND::displayCards() const
+{
+		printf("카드카운트 %d\n" , getCardCount());
+	for (int i = 0; i < getCardCount(); i++)
+	{
+		printf("%d", m_cards[i].getValue());
+	}
+}
+
+
