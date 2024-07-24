@@ -1,6 +1,6 @@
 #include "C_PLAYER.h"
 
-C_HAND C_PLAYER::getHand() const
+C_HAND& C_PLAYER::getHand()
 {
 	return m_hand;
 }

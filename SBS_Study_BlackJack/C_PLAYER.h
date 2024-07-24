@@ -11,7 +11,7 @@ public:
 	C_PLAYER() = default;
 
 
-	C_HAND getHand() const;
+	C_HAND& getHand();
 	bool makeDecision() const;
 	void init();
 };

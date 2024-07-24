@@ -8,7 +8,7 @@ public:
 	C_DEALER() = default;
 
 	bool makeDecision() const;
-	C_HAND getHand() const;
+	C_HAND& getHand();
 	void init();
 };
 

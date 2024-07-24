@@ -11,7 +11,7 @@ bool C_DEALER::makeDecision() const
 	return true;
 }
 
-C_HAND C_DEALER::getHand() const
+C_HAND& C_DEALER::getHand()
 {
 	return m_hand;
 }
