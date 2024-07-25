@@ -29,5 +29,6 @@ public:
 	void dealInitialCards();
 	void playCurrentRound();
 	void determineWinner();
+	void displayCards(bool hideDealerFirstCard = true);
 };
 

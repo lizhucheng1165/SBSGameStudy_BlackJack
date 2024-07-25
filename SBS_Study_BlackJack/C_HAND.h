@@ -15,6 +15,6 @@ public:
 	void clearHand();
 	void init();
 	int getCardCount() const;
-	void displayCards() const;
+	void displayCards(bool bHideFirstCard) const;
 };
 

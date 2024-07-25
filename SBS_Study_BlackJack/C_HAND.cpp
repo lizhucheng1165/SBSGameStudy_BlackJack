@@ -44,12 +44,21 @@ int C_HAND::getCardCount() const
 	return m_cards.size();
 }
 
-void C_HAND::displayCards() const
+void C_HAND::displayCards(bool bHideFirstCard) const
 {
 	for (int i = 0; i < getCardCount(); i++)
 	{
-		printf("%d ", m_cards[i].getValue());
+		if (i == 0 && bHideFirstCard)
+		{
+			printf("* ");
+		}
+		else
+		{
+			printf("%d ", m_cards[i].getValue());
+		}
 	}
+	printf("\n");
 }
+
 
 

@@ -14,5 +14,6 @@ public:
 	C_HAND& getHand();
 	bool makeDecision() const;
 	void init();
+	
 };
 

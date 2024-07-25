@@ -45,14 +45,22 @@ void C_DECK::init()
 {
     for (int i = 0; i < 4; i++)
     {
-        for (int j = 1; j < 14; j++)
+        C_CARD::E_SUIT suit = (C_CARD::E_SUIT)i;
+        for (int j = 1; j < 11; j++)
         {
             C_CARD card{};
-            C_CARD::E_SUIT suit = (C_CARD::E_SUIT)i;
             C_CARD::E_VALUE value = (C_CARD::E_VALUE)j;
             card.init(suit, value);
             m_cards.push_back(card);
         }
+
+        C_CARD faceCard{};
+        faceCard.init(suit, C_CARD::JACK);
+        m_cards.push_back(faceCard);
+        faceCard.init(suit, C_CARD::QUEEN);
+        m_cards.push_back(faceCard);
+        faceCard.init(suit, C_CARD::KING);
+        m_cards.push_back(faceCard);
     }
 }
 
