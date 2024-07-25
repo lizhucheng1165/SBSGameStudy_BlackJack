@@ -6,10 +6,18 @@
 
 int main()
 {
-	C_GAME newGame{};
+    char playAgain = 'y';
+    while (playAgain == 'y' || playAgain == 'Y')
+    {
+        C_GAME newGame{};
+        newGame.initializeGame();
+        newGame.playCurrentRound();
 
-	newGame.initializeGame();
-	newGame.playCurrentRound();
+        std::cout << "게임을 다시 시작하시겠습니까? (y/n): ";
+        std::cin >> playAgain;
+    }
 
+    std::cout << "게임을 종료합니다." << std::endl;
+    return 0;
 }
 

@@ -28,29 +28,50 @@ void C_GAME::dealInitialCards()
 
 void C_GAME::playCurrentRound()
 {
-	//init카드 나눠주기
 	dealInitialCards();
-	//m_dealer.getHand().displayCards();
-	//플레이어 결정
+	displayCards(true);
+
 	while (m_eWhosTurn == PLAYER)
 	{
-		displayCards();
-		//hit -> 플레이어 카드추가
 		if (m_player.makeDecision())
 		{
 			m_player.getHand().addCard(m_deck.dealCard());
-			determineWinner();
+			displayCards(true);
+			if (m_player.getHand().isBusted())
+			{
+				determineWinner();
+				return;
+			}
+		}
+		else
+		{
+			m_eWhosTurn = DEALER;
 		}
 	}
-	//stand -> 딜러턴
-	while (m_dealer.makeDecision())
+
+	displayCards(false);
+	while (m_eWhosTurn == DEALER)
 	{
-		displayCards();
-		m_dealer.getHand().addCard(m_deck.dealCard());
-		//m_dealer.getHand().displayCards();
+		if (m_dealer.makeDecision())
+		{
+			m_dealer.getHand().addCard(m_deck.dealCard());
+			displayCards(false);
+			if (m_dealer.getHand().isBusted())
+			{
+				determineWinner();
+				return;
+			}
+		}
+		else
+		{
+			m_eWhosTurn = PLAYER; // To exit the loop
+			break;
+		}
 	}
 	determineWinner();
 }
+
+
 
 void C_GAME::determineWinner()
 {

@@ -9,15 +9,28 @@ void C_HAND::addCard(C_CARD card)
 
 int C_HAND::getTotalValue() const
 {
-	int nCardCount = m_cards.size();
-	int nTotal{};
-	int nAceCount{};
-	for (int i = 0; i < nCardCount; i++)
+	int nTotal = 0;
+	int nAces = 0;
+
+	for (const auto& card : m_cards)
 	{
-		nTotal += m_cards[i].getValue();
+		int value = card.getValue();
+		if (value == 11)
+		{
+			nAces++;
+		}
+		nTotal += value;
 	}
-	return 0;
+
+	while (nTotal > 21 && nAces > 0)
+	{
+		nTotal -= 10;
+		nAces--;
+	}
+
+	return nTotal;
 }
+
 
 bool C_HAND::isBusted()
 {
@@ -57,6 +70,8 @@ void C_HAND::displayCards(bool bHideFirstCard) const
 			printf("%d ", m_cards[i].getValue());
 		}
 	}
+
+	printf("  Total : %d", getTotalValue());
 	printf("\n");
 }
 
