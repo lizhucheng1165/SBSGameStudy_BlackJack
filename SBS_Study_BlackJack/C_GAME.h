@@ -16,9 +16,9 @@ public:
 		READY, PLAYING
 	};
 private:
-	C_DECK m_deck;
-	C_DEALER m_dealer;
-	C_PLAYER m_player;
+	C_DECK m_cDeck;
+	C_DEALER m_cDealer;
+	C_PLAYER m_cPlayer;
 	E_WHOSTURN m_eWhosTurn;
 	E_GAMESTATE m_eGameState;
 
@@ -29,6 +29,6 @@ public:
 	void dealInitialCards();
 	void playCurrentRound();
 	void determineWinner();
-	void displayCards(bool hideDealerFirstCard = true);
+	void displayCards(bool bHideDealersFirstCard = true);
 };
 

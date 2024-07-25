@@ -5,16 +5,16 @@ class C_HAND
 {
 
 private:
-	std::vector<C_CARD> m_cards;
+	std::vector<C_CARD> m_vCards;
 public:
 	C_HAND() = default;
 
-	void addCard(C_CARD card);
+	void addCard(const C_CARD& cCard);
 	int getTotalValue() const;
 	bool isBusted();
 	void clearHand();
 	void init();
 	int getCardCount() const;
-	void displayCards(bool bHideFirstCard) const;
+	void displayCards(bool bHideFirstCard, bool bShowTotal, bool bShowHiddenTotal) const;
 };
 

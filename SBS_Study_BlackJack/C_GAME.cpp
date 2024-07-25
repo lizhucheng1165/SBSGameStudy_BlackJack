@@ -5,13 +5,13 @@
 void C_GAME::initializeGame()
 {
 	//덱초기화
-	m_deck.init();
+	m_cDeck.init();
 	//덱셔플
-	m_deck.shuffle();
+	m_cDeck.shuffle();
 	//딜러 초기화
-	m_dealer.init();
+	m_cDealer.init();
 	//플레이어 초기화
-	m_player.init();
+	m_cPlayer.init();
 	//시작 턴 = 플레이어
 	m_eWhosTurn = PLAYER;
 	m_eGameState = PLAYING;
@@ -21,8 +21,13 @@ void C_GAME::dealInitialCards()
 {
 	for (int i = 0; i < 2; i++)
 	{
-		m_player.getHand().addCard(m_deck.dealCard());
-		m_dealer.getHand().addCard(m_deck.dealCard());
+		C_CARD cPlayerCard = m_cDeck.dealCard();
+		C_HAND& cPlayerHand = m_cPlayer.getHand();
+		cPlayerHand.addCard(cPlayerCard);
+
+		C_CARD cDealerCard = m_cDeck.dealCard();
+		C_HAND& cDealerHand = m_cDealer.getHand();
+		cDealerHand.addCard(cDealerCard);
 	}
 }
 
@@ -33,11 +38,13 @@ void C_GAME::playCurrentRound()
 
 	while (m_eWhosTurn == PLAYER)
 	{
-		if (m_player.makeDecision())
+		if (m_cPlayer.makeDecision())
 		{
-			m_player.getHand().addCard(m_deck.dealCard());
+			C_CARD cNewCard = m_cDeck.dealCard();
+			C_HAND& cPlayerHand = m_cPlayer.getHand();
+			cPlayerHand.addCard(cNewCard);
 			displayCards(true);
-			if (m_player.getHand().isBusted())
+			if (cPlayerHand.isBusted())
 			{
 				determineWinner();
 				return;
@@ -52,11 +59,13 @@ void C_GAME::playCurrentRound()
 	displayCards(false);
 	while (m_eWhosTurn == DEALER)
 	{
-		if (m_dealer.makeDecision())
+		if (m_cDealer.makeDecision())
 		{
-			m_dealer.getHand().addCard(m_deck.dealCard());
+			C_CARD cNewCard = m_cDeck.dealCard();
+			C_HAND& cDealerHand = m_cDealer.getHand();
+			cDealerHand.addCard(cNewCard);
 			displayCards(false);
-			if (m_dealer.getHand().isBusted())
+			if (cDealerHand.isBusted())
 			{
 				determineWinner();
 				return;
@@ -64,7 +73,6 @@ void C_GAME::playCurrentRound()
 		}
 		else
 		{
-			m_eWhosTurn = PLAYER; // To exit the loop
 			break;
 		}
 	}
@@ -75,38 +83,44 @@ void C_GAME::playCurrentRound()
 
 void C_GAME::determineWinner()
 {
-	int nPlayerTotal = m_player.getHand().getTotalValue();
-	int nDealerTotal = m_dealer.getHand().getTotalValue();
+	C_HAND& cPlayerHand = m_cPlayer.getHand();
+	C_HAND& cDealerHand = m_cDealer.getHand();
+	int nPlayerTotal = cPlayerHand.getTotalValue();
+	int nDealerTotal = cDealerHand.getTotalValue();
+
 
 	//플레이어가 21이 넘음 -> 패배
-	if (m_player.getHand().isBusted())
+	if (cPlayerHand.isBusted())
 	{
-		printf("플레이어 패배1");
+		printf("플레이어 패배\n");
 		m_eGameState = READY;
 	}
-	else if (m_dealer.getHand().isBusted())
+	else if (cDealerHand.isBusted())
 	{
-		printf("플레이어 승리1");
+		printf("플레이어 승리\n");
 		m_eGameState = READY;
 	}
 	else if (nPlayerTotal > nDealerTotal)
 	{
-		printf("플레이어 승리2");
+		printf("플레이어 승리\n");
 		m_eGameState = READY;
 	}
 	else
 	{
-		printf("플레이어 패배2");
+		printf("플레이어 패배\n");
 		m_eGameState = READY;
 	}
 }
 
-void C_GAME::displayCards(bool hideDealerFirstCard)
+void C_GAME::displayCards(bool bHideDealerFirstCard)
 {
+	bool bHideFirstCard = bHideDealerFirstCard;
+	bool bShowTotal = !bHideDealerFirstCard;
+	bool bShowHidden = bHideDealerFirstCard;
 	printf("Dealer's cards: ");
-	m_dealer.getHand().displayCards(hideDealerFirstCard);
+	m_cDealer.getHand().displayCards(bHideFirstCard, bShowTotal, bShowHidden);
 	printf("Player's cards: ");
-	m_player.getHand().displayCards(false);
+	m_cPlayer.getHand().displayCards(false, true,false);
 }
 
 

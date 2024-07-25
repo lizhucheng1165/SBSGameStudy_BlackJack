@@ -2,7 +2,7 @@
 
 bool C_DEALER::makeDecision() const
 {
-	int nTotalValue = m_hand.getTotalValue();
+	int nTotalValue = m_cHand.getTotalValue();
 	if (nTotalValue >= 17)
 	{
 		return false;
@@ -13,12 +13,12 @@ bool C_DEALER::makeDecision() const
 
 C_HAND& C_DEALER::getHand()
 {
-	return m_hand;
+	return m_cHand;
 }
 
 void C_DEALER::init()
 {
-	m_hand.init();
+	m_cHand.init();
 }
 
 

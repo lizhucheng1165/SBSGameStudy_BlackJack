@@ -2,7 +2,7 @@
 
 C_HAND& C_PLAYER::getHand()
 {
-    return m_hand;
+    return m_cHand;
 }
 
 bool C_PLAYER::makeDecision() const
@@ -18,11 +18,15 @@ bool C_PLAYER::makeDecision() const
         while (getchar() != '\n');
         scanf_s("%d", &nDecisionIndex);
     }
+    if (nDecisionIndex == 1)
+    {
+        return true;
+    }
 
-    return nDecisionIndex == 1;
+    return false;
 }
 
 void C_PLAYER::init()
 {
-    m_hand.init();
+    m_cHand.init();
 }

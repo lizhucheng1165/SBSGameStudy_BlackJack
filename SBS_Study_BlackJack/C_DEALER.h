@@ -3,7 +3,7 @@
 class C_DEALER
 {
 private:
-	C_HAND m_hand;
+	C_HAND m_cHand;
 public:
 	C_DEALER() = default;
 

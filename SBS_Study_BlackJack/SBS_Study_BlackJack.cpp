@@ -13,11 +13,11 @@ int main()
         newGame.initializeGame();
         newGame.playCurrentRound();
 
-        std::cout << "게임을 다시 시작하시겠습니까? (y/n): ";
-        std::cin >> playAgain;
+        printf("게임을 다시 시작하시겠습니까? (y/n): ");
+        scanf_s(" %c", &playAgain, 1);
     }
 
-    std::cout << "게임을 종료합니다." << std::endl;
+    printf("게임을 종료합니다.\n");
     return 0;
 }
 

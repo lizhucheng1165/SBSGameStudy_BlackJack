@@ -10,7 +10,7 @@ public:
 	};
 	enum E_VALUE
 	{
-		ONE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK = 10, QUEEN = 10, KING = 10, ACE = 11
+		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK = 10, QUEEN = 10, KING = 10, ACE = 11
 	};
 
 private:
@@ -22,7 +22,7 @@ public:
 
 	int getValue() const;
 	E_SUIT getSuit() const;
-	void init(E_SUIT,E_VALUE);
+	void init(const E_SUIT& eSuit, const E_VALUE& eValue);
 	
 };
 

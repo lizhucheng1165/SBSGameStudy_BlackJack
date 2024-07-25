@@ -5,14 +5,14 @@
 class C_DECK
 {
 private:
-	std::vector<C_CARD> m_cards;
+	std::vector<C_CARD> m_vCards;
 	
 
 public:
 	C_DECK() = default;
 
 	bool shuffle();
-	C_CARD dealCard();
+	C_CARD& dealCard();
 	void init();
 };
 

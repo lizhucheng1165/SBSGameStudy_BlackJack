@@ -3,12 +3,12 @@
 
 bool C_DECK::shuffle()
 {
-    int nCardCount = m_cards.size();
+    int nCardCount = m_vCards.size();
 
     //카드 갯수가 1이하라면 셔플할 필요가 없다
     if (nCardCount <= 1) 
     {
-        //예외처리 피드백
+        printf("카드 갯수가 1 이하이므로 셔플이 필요 없습니다");
         return false;
     }
 
@@ -26,7 +26,7 @@ bool C_DECK::shuffle()
         int nRandomNumber = distribution(randomEngine);
 
         // 현재 인덱스와 무작위 인덱스의 요소를 교환
-        std::swap(m_cards[i], m_cards[nRandomNumber]);
+        std::swap(m_vCards[i], m_vCards[nRandomNumber]);
     }
 
     
@@ -34,10 +34,10 @@ bool C_DECK::shuffle()
 }
 
 
-C_CARD C_DECK::dealCard()
+C_CARD& C_DECK::dealCard()
 {
-    C_CARD cardToDeal = m_cards.back();
-    m_cards.pop_back();
+    C_CARD cardToDeal = m_vCards.back();
+    m_vCards.pop_back();
 	return 	cardToDeal;
 }
 
@@ -45,22 +45,30 @@ void C_DECK::init()
 {
     for (int i = 0; i < 4; i++)
     {
-        C_CARD::E_SUIT suit = (C_CARD::E_SUIT)i;
-        for (int j = 1; j < 11; j++)
+        C_CARD::E_SUIT eSuit = (C_CARD::E_SUIT)i;
+        for (int j = 2; j <= 10; j++)
         {
+            //숫자카드추가
             C_CARD card{};
             C_CARD::E_VALUE value = (C_CARD::E_VALUE)j;
-            card.init(suit, value);
-            m_cards.push_back(card);
+            card.init(eSuit, value);
+            m_vCards.push_back(card);
         }
 
-        C_CARD faceCard{};
-        faceCard.init(suit, C_CARD::JACK);
-        m_cards.push_back(faceCard);
-        faceCard.init(suit, C_CARD::QUEEN);
-        m_cards.push_back(faceCard);
-        faceCard.init(suit, C_CARD::KING);
-        m_cards.push_back(faceCard);
+        //그림카드추가
+        C_CARD faceCard;
+
+        faceCard.init(eSuit, C_CARD::JACK);
+        m_vCards.push_back(faceCard);
+
+        faceCard.init(eSuit, C_CARD::QUEEN);
+        m_vCards.push_back(faceCard);
+
+        faceCard.init(eSuit, C_CARD::KING);
+        m_vCards.push_back(faceCard);
+
+        faceCard.init(eSuit, C_CARD::ACE);
+        m_vCards.push_back(faceCard);
     }
 }
 
