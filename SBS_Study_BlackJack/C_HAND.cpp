@@ -4,14 +4,14 @@
 
 void C_HAND::addCard(C_CARD card)
 {
-	m_cards.push_back(card);//여기가 문제
-	printf("카드 추가됨. 현재 카드 수: %d\n", m_cards.size());
+	m_cards.push_back(card);
 }
 
 int C_HAND::getTotalValue() const
 {
 	int nCardCount = m_cards.size();
 	int nTotal{};
+	int nAceCount{};
 	for (int i = 0; i < nCardCount; i++)
 	{
 		nTotal += m_cards[i].getValue();
@@ -46,10 +46,9 @@ int C_HAND::getCardCount() const
 
 void C_HAND::displayCards() const
 {
-		printf("카드카운트 %d\n" , getCardCount());
 	for (int i = 0; i < getCardCount(); i++)
 	{
-		printf("%d", m_cards[i].getValue());
+		printf("%d ", m_cards[i].getValue());
 	}
 }
 

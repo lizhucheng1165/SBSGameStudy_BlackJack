@@ -4,7 +4,6 @@
 
 void C_GAME::initializeGame()
 {
-	printf("이니셜라이즈 게임\n");
 	//덱초기화
 	m_deck.init();
 	//덱셔플
@@ -24,7 +23,6 @@ void C_GAME::dealInitialCards()
 	{
 		m_player.getHand().addCard(m_deck.dealCard());
 		m_dealer.getHand().addCard(m_deck.dealCard());
-
 	}
 }
 
@@ -61,22 +59,22 @@ void C_GAME::determineWinner()
 	//플레이어가 21이 넘음 -> 패배
 	if (m_player.getHand().isBusted())
 	{
-		printf("플레이어 패배");
+		printf("플레이어 패배1");
 		m_eGameState = READY;
 	}
 	else if (m_dealer.getHand().isBusted())
 	{
-		printf("플레이어 승리");
+		printf("플레이어 승리1");
 		m_eGameState = READY;
 	}
 	else if (nPlayerTotal > nDealerTotal)
 	{
-		printf("플레이어 승리");
+		printf("플레이어 승리2");
 		m_eGameState = READY;
 	}
 	else
 	{
-		printf("플레이어 패배");
+		printf("플레이어 패배2");
 		m_eGameState = READY;
 	}
 }

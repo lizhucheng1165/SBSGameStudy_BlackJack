@@ -28,6 +28,5 @@ bool C_PLAYER::makeDecision() const
 
 void C_PLAYER::init()
 {
-	printf("플레이어 인잇\n");
 	m_hand.init();
 }

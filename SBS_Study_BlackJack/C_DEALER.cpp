@@ -18,7 +18,6 @@ C_HAND& C_DEALER::getHand()
 
 void C_DEALER::init()
 {
-	printf("µÙ∑Ø¿Œ¿’\n");
 	m_hand.init();
 }
 
